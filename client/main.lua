@@ -4,7 +4,7 @@ local HideAt = -1 -- POSIX timestamp
 
 AddEventHandler('SaltyChat_VoiceRangeChanged', function()
     ShowVoiceRange = true
-    HideAt = GetCloudTimeAsInt() + 3
+    HideAt = GetCloudTimeAsInt() + SaltyRange.ShowRangeDuration
     CreateThread(function()
         while ShowVoiceRange do
             local PlayerPed = PlayerPedId()
@@ -12,7 +12,7 @@ AddEventHandler('SaltyChat_VoiceRangeChanged', function()
             local VoiceRange = exports['saltychat']:GetVoiceRange()
             local CloudTime = GetCloudTimeAsInt();
             
-            DrawMarker(25, PlayerPos.x, PlayerPos.y, PlayerPos.z - 0.95, 0, 0, 0, 0, 0, 0, VoiceRange * 2, VoiceRange * 2, VoiceRange,  0, 255, 0, 100, false, false, 2, false, nil, nil, false)
+            DrawMarker(25, PlayerPos.x, PlayerPos.y, PlayerPos.z - 0.95, 0, 0, 0, 0, 0, 0, VoiceRange * 2, VoiceRange * 2, VoiceRange,  SaltyRange.RangeColor.R, SaltyRange.RangeColor.G, SaltyRange.RangeColor.B, SaltyRange.RangeColor.A, false, false, 2, false, nil, nil, false)
             
             if CloudTime >= HideAt then
                 ShowVoiceRange = false
